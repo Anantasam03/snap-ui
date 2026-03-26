@@ -1,0 +1,28 @@
+# Environment & secrets
+.env
+.env.local
+*.env
+
+# PHP/CI sensitive files
+application/config/database.php
+application/config/email.php
+application/logs/*
+!application/logs/index.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-project
+
+# Dependencies
+node_modules/
+vendor/
+
+# Cache & compiled
+application/cache/output/*
+application/cache/db/*
+*.log

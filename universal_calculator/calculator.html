@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniversalCalc | All-in-One Calculator Suite</title>
+    <meta
+      name="description"
+      content="UniversalCalc is your all-in-one solution for date calculations, percentage computations, age calculations, and much more. Access powerful tools in one place with a beautiful, modern interface."
+    />
+    <meta name="author" content="Ananta Samal" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="css/calculator.css" />
+  </head>
+
+  <body>
+    <!-- ===================== HEADER ===================== -->
+    <header>
+      <div class="nav-inner">
+        <a href="#" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">UniversalCalc</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#time-calendar">Time & Calendar</a></li>
+          <li><a href="#date-calc">Date Calc</a></li>
+          <li><a href="#percentage-calc">Percentage</a></li>
+          <li><a href="#age-calc">Age</a></li>
+          <li><a href="#other-calc">More Tools</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburgerBtn">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <nav class="mobile-menu" id="mobileMenu">
+      <a href="#time-calendar" onclick="closeMobileMenu()"
+        >⏰ Time & Calendar</a
+      >
+      <a href="#date-calc" onclick="closeMobileMenu()">📅 Date Calculator</a>
+      <a href="#percentage-calc" onclick="closeMobileMenu()">% Percentage</a>
+      <a href="#age-calc" onclick="closeMobileMenu()">🎂 Age Calculator</a>
+      <a href="#other-calc" onclick="closeMobileMenu()">🧮 More Tools</a>
+      <a href="#contact" onclick="closeMobileMenu()">✉️ Contact</a>
+    </nav>
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero" id="home">
+      <div class="hero-badge">✦ All-in-One Calculation Suite</div>
+      <h1>
+        Calculate <span class="grad">Anything</span>,<br />Anytime, Anywhere
+      </h1>
+      <p>
+        Your complete toolkit — dates, percentages, age, BMI, interest, and
+        more. Beautifully designed for everyone.
+      </p>
+      <div class="hero-ctas">
+        <a href="#date-calc" class="btn-primary-3d"
+          ><i class="bi bi-calculator"></i> Start Calculating</a
+        >
+        <a href="#contact" class="btn-secondary-3d"
+          ><i class="bi bi-envelope"></i> Contact Us</a
+        >
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Calculator Types</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Free to Use</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Calculations</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Ads or Sign-ups</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== TIME & CALENDAR ===================== -->
+    <section id="time-calendar" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Real-time</div>
+          <h2 class="section-title">
+            Time & <span class="grad">Calendar</span>
+          </h2>
+        </div>
+        <div class="time-section-grid">
+          <!-- Live Clock -->
+          <div class="time-card">
+            <div class="time-display" id="current-time">--:--:--</div>
+            <div class="date-display" id="current-date">Loading...</div>
+            <div class="time-meta">
+              <div class="time-meta-item">
+                Timezone: <strong id="timezone">--</strong>
+              </div>
+              <div class="time-meta-item">
+                Day: <strong id="day-of-year">--</strong>
+              </div>
+              <div class="time-meta-item">
+                Week: <strong id="week-number">--</strong>
+              </div>
+            </div>
+          </div>
+          <!-- Calendar -->
+          <div class="calendar-card">
+            <div class="calendar-header">
+              <button class="cal-nav-btn" id="prev-month">
+                <i class="bi bi-chevron-left"></i>
+              </button>
+              <h3 id="calendar-month-year">Month Year</h3>
+              <button class="cal-nav-btn" id="next-month">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <div class="calendar-body">
+              <div class="cal-weekdays">
+                <div>SUN</div>
+                <div>MON</div>
+                <div>TUE</div>
+                <div>WED</div>
+                <div>THU</div>
+                <div>FRI</div>
+                <div>SAT</div>
+              </div>
+              <div class="cal-days" id="calendar-days"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== DATE CALCULATOR ===================== -->
+    <section id="date-calc" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Date Tools</div>
+          <h2 class="section-title">
+            Date <span class="grad">Calculator</span>
+          </h2>
+        </div>
+        <div class="grid-2">
+          <!-- Date Difference -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-purple">
+              <i class="bi bi-calendar-range"></i>
+            </div>
+            <div class="card-title">Date Difference</div>
+            <div class="card-desc">
+              Calculate the exact gap between two dates.
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="date" id="start-date" />
+            </div>
+            <div class="form-group">
+              <label>End Date</label>
+              <input type="date" id="end-date" />
+            </div>
+            <div class="form-group">
+              <label>Calculate In</label>
+              <select id="date-unit">
+                <option value="days">Days</option>
+                <option value="weeks">Weeks</option>
+                <option value="months">Months</option>
+                <option value="years">Years</option>
+              </select>
+            </div>
+            <button class="btn-calc" id="calculate-date-diff">
+              <i class="bi bi-arrow-right-circle"></i> Calculate Difference
+            </button>
+            <div class="result-box" id="date-result">
+              <div class="result-label">Result</div>
+              <div class="result-value" id="date-result-value">—</div>
+              <div class="result-detail" id="date-detail"></div>
+            </div>
+          </div>
+
+          <!-- Add/Subtract -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-pink">
+              <i class="bi bi-calendar-plus"></i>
+            </div>
+            <div class="card-title">Add / Subtract Days</div>
+            <div class="card-desc">
+              Find a date by adding or subtracting from any date.
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="date" id="base-date" />
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Amount</label>
+                <input type="number" id="date-count" value="7" min="1" />
+              </div>
+              <div class="form-group">
+                <label>Unit</label>
+                <select id="add-unit">
+                  <option value="days">Days</option>
+                  <option value="weeks">Weeks</option>
+                  <option value="months">Months</option>
+                  <option value="years">Years</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Operation</label>
+              <div class="radio-group">
+                <label
+                  ><input type="radio" name="operation" id="add" checked />
+                  Add</label
+                >
+                <label
+                  ><input type="radio" name="operation" id="subtract" />
+                  Subtract</label
+                >
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-date-add">
+              <i class="bi bi-arrow-right-circle"></i> Calculate New Date
+            </button>
+            <div class="result-box" id="add-date-result">
+              <div class="result-label">New Date</div>
+              <div class="result-value" id="add-date-result-value">—</div>
+              <div class="result-detail" id="add-date-detail"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== PERCENTAGE CALCULATOR ===================== -->
+    <section id="percentage-calc" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Math Tools</div>
+          <h2 class="section-title">
+            Percentage <span class="grad">Calculator</span>
+          </h2>
+        </div>
+        <div class="grid-3">
+          <!-- % of Number -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-cyan">
+              <i class="bi bi-percent"></i>
+            </div>
+            <div class="card-title">% of a Number</div>
+            <div class="card-desc">What is X% of Y?</div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Percentage (X)</label>
+                <input type="number" id="percent-x" placeholder="e.g. 15" />
+              </div>
+              <div class="form-group">
+                <label>Number (Y)</label>
+                <input type="number" id="number-y" placeholder="e.g. 200" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-percent-of">
+              <i class="bi bi-calculator"></i> Calculate
+            </button>
+            <div class="result-box" id="percent-of-result">
+              <div class="result-label">Result</div>
+              <div class="result-value" id="percent-of-result-value">—</div>
+              <div class="result-detail" id="percent-of-detail"></div>
+            </div>
+          </div>
+
+          <!-- % Change -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-orange">
+              <i class="bi bi-arrow-up-right"></i>
+            </div>
+            <div class="card-title">% Increase / Decrease</div>
+            <div class="card-desc">
+              Calculate percentage change between values.
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Original Value</label>
+                <input
+                  type="number"
+                  id="original-value"
+                  placeholder="e.g. 100"
+                />
+              </div>
+              <div class="form-group">
+                <label>New Value</label>
+                <input type="number" id="new-value" placeholder="e.g. 125" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-percent-change">
+              <i class="bi bi-calculator"></i> Calculate Change
+            </button>
+            <div class="result-box" id="percent-change-result">
+              <div class="result-label">Change</div>
+              <div class="result-value" id="percent-change-result-value">—</div>
+              <div class="result-detail" id="percent-change-detail"></div>
+            </div>
+          </div>
+
+          <!-- Find % -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-green">
+              <i class="bi bi-pie-chart"></i>
+            </div>
+            <div class="card-title">Find Percentage</div>
+            <div class="card-desc">What % is X of Y?</div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Partial (X)</label>
+                <input type="number" id="partial-value" placeholder="e.g. 25" />
+              </div>
+              <div class="form-group">
+                <label>Total (Y)</label>
+                <input type="number" id="total-value" placeholder="e.g. 200" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-what-percent">
+              <i class="bi bi-calculator"></i> Calculate %
+            </button>
+            <div class="result-box" id="what-percent-result">
+              <div class="result-label">Percentage</div>
+              <div class="result-value" id="what-percent-result-value">—</div>
+              <div class="result-detail" id="what-percent-detail"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== AGE CALCULATOR ===================== -->
+    <section id="age-calc" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Personal Tools</div>
+          <h2 class="section-title">
+            Age <span class="grad">Calculator</span>
+          </h2>
+        </div>
+        <div style="max-width: 720px; margin: 0 auto">
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-pink">
+              <i class="bi bi-person-heart"></i>
+            </div>
+            <div class="card-title">Calculate Your Exact Age</div>
+            <div class="card-desc">
+              Find your age in years, months, days, hours — plus days until your
+              next birthday.
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="birth-date" />
+              </div>
+              <div class="form-group">
+                <label>Age At Date (optional)</label>
+                <input type="date" id="age-at-date" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-age">
+              <i class="bi bi-cake2"></i> Calculate My Age
+            </button>
+            <div class="result-box" id="age-result" style="display: none">
+              <div class="result-label" style="margin-bottom: 14px">
+                Your Age Breakdown
+              </div>
+              <div class="age-pills">
+                <div class="age-pill">
+                  <div class="num" id="age-years">0</div>
+                  <div class="lbl">Years</div>
+                </div>
+                <div class="age-pill">
+                  <div class="num" id="age-months">0</div>
+                  <div class="lbl">Months</div>
+                </div>
+                <div class="age-pill">
+                  <div class="num" id="age-days">0</div>
+                  <div class="lbl">Days</div>
+                </div>
+                <div class="age-pill">
+                  <div class="num" id="age-hours">0</div>
+                  <div class="lbl">Hours</div>
+                </div>
+              </div>
+              <div class="age-extras">
+                <span>Total Days: <strong id="total-days">0</strong></span>
+                <span>Total Weeks: <strong id="total-weeks">0</strong></span>
+                <span
+                  >🎂 Next Birthday in:
+                  <strong id="next-birthday">-</strong> days</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== MORE CALCULATORS ===================== -->
+    <section id="other-calc" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">More Tools</div>
+          <h2 class="section-title">
+            Health & Finance <span class="grad">Tools</span>
+          </h2>
+        </div>
+        <div class="grid-2">
+          <!-- BMI -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-green">
+              <i class="bi bi-speedometer2"></i>
+            </div>
+            <div class="card-title">BMI Calculator</div>
+            <div class="card-desc">
+              Calculate your Body Mass Index based on height and weight.
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Height (cm)</label>
+                <input type="number" id="height-cm" placeholder="e.g. 170" />
+              </div>
+              <div class="form-group">
+                <label>Weight (kg)</label>
+                <input type="number" id="weight-kg" placeholder="e.g. 65" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-bmi">
+              <i class="bi bi-activity"></i> Calculate BMI
+            </button>
+            <div class="result-box" id="bmi-result">
+              <div class="result-label">Your BMI</div>
+              <div class="result-value" id="bmi-result-value">—</div>
+              <div
+                style="
+                  margin-top: 10px;
+                  padding: 10px 14px;
+                  border-radius: 8px;
+                  background: rgba(255, 255, 255, 0.05);
+                  border: 1px solid var(--glass-border);
+                "
+                id="bmi-category"
+              >
+                Category:
+                <strong id="bmi-category-text" style="color: var(--c5)"
+                  >—</strong
+                >
+              </div>
+              <div class="result-detail" id="bmi-detail"></div>
+            </div>
+          </div>
+
+          <!-- Simple Interest -->
+          <div class="glass-card">
+            <div class="card-icon-wrap icon-orange">
+              <i class="bi bi-currency-exchange"></i>
+            </div>
+            <div class="card-title">Simple Interest Calculator</div>
+            <div class="card-desc">
+              Calculate interest and total amount on principal over time.
+            </div>
+            <div class="form-group">
+              <label>Principal Amount (₹/$)</label>
+              <input type="number" id="principal" placeholder="e.g. 10000" />
+            </div>
+            <div class="row-2">
+              <div class="form-group">
+                <label>Rate (%)</label>
+                <input type="number" id="interest-rate" placeholder="e.g. 5" />
+              </div>
+              <div class="form-group">
+                <label>Time (Years)</label>
+                <input type="number" id="time-period" placeholder="e.g. 3" />
+              </div>
+            </div>
+            <button class="btn-calc" id="calculate-interest">
+              <i class="bi bi-graph-up-arrow"></i> Calculate Interest
+            </button>
+            <div class="result-box" id="interest-result">
+              <div class="result-label">Result</div>
+              <div class="interest-result-grid">
+                <div class="interest-result-item">
+                  <div class="lbl">Simple Interest</div>
+                  <div class="val">$<span id="simple-interest">0.00</span></div>
+                </div>
+                <div class="interest-result-item">
+                  <div class="lbl">Total Amount</div>
+                  <div class="val">$<span id="total-amount">0.00</span></div>
+                </div>
+              </div>
+              <div class="result-detail" id="interest-detail"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section-wrapper">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-tag">Get in Touch</div>
+          <h2 class="section-title">Contact <span class="grad">Us</span></h2>
+        </div>
+        <div class="contact-grid">
+          <!-- Form -->
+          <div class="glass-card">
+            <div
+              class="card-title"
+              style="font-size: 1.3rem; margin-bottom: 20px"
+            >
+              Send Us a Message
+            </div>
+            <form id="contact-form">
+              <div class="row-2">
+                <div class="form-group">
+                  <label>Your Name</label>
+                  <input type="text" id="contact-name" placeholder="John Doe" />
+                </div>
+                <div class="form-group">
+                  <label>Your Email</label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    placeholder="john@email.com"
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Subject</label>
+                <input
+                  type="text"
+                  id="contact-subject"
+                  placeholder="What's this about?"
+                />
+              </div>
+              <div class="form-group">
+                <label>Message</label>
+                <textarea
+                  id="contact-message"
+                  placeholder="Write your message here..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-calc">
+                <i class="bi bi-send"></i> Send Message
+              </button>
+              <div id="contact-success" class="success-alert">
+                <i class="bi bi-check-circle-fill"></i> Your message has been
+                sent successfully!
+              </div>
+            </form>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <div class="glass-card" style="margin-bottom: 24px">
+              <div class="card-title" style="margin-bottom: 18px">
+                Contact Information
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">📧</div>
+                <div>
+                  <h5>Email</h5>
+                  <p>hello@universalcalc.com</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">📞</div>
+                <div>
+                  <h5>Phone</h5>
+                  <p>+1 (555) 123-4567</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <h5>Address</h5>
+                  <p>123 Calculator Street, Mathville, CA 90210</p>
+                </div>
+              </div>
+              <div class="contact-info-item">
+                <div class="contact-icon">🕐</div>
+                <div>
+                  <h5>Business Hours</h5>
+                  <p>Mon–Fri: 9AM–6PM · Sat: 10AM–4PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <a href="#" class="logo">
+              <div
+                class="logo-icon"
+                style="width: 38px; height: 38px; font-size: 18px"
+              >
+                ⚡
+              </div>
+              <span class="logo-text">UniversalCalc</span>
+            </a>
+            <p class="footer-tagline">
+              Your all-in-one calculation suite. Free, fast, and beautifully
+              designed for everyone — from students to professionals.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="bi bi-facebook"></i></a>
+              <a href="#"><i class="bi bi-twitter-x"></i></a>
+              <a href="#"><i class="bi bi-instagram"></i></a>
+              <a href="#"><i class="bi bi-linkedin"></i></a>
+              <a href="#"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Calculators</h4>
+            <a href="#date-calc">Date Calculator</a>
+            <a href="#percentage-calc">Percentage</a>
+            <a href="#age-calc">Age Calculator</a>
+            <a href="#other-calc">BMI & Interest</a>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="#home">Home</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+          <div class="footer-col">
+            <h4>Newsletter</h4>
+            <p
+              style="
+                font-size: 0.84rem;
+                color: var(--text-muted);
+                margin-bottom: 12px;
+              "
+            >
+              Get updates on new features and tools.
+            </p>
+            <div class="newsletter-input-group">
+              <input type="email" placeholder="your@email.com" />
+              <button>Subscribe</button>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2025 UniversalCalc. Made with ♥ — All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================== SCRIPTS ===================== -->
+    <script src="js/calculator.js"></script>
+  </body>
+</html>
